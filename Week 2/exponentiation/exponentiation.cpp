@@ -1,17 +1,35 @@
-#include <cmath>
 #include <cstdint>
 #include <iostream>
 
-uint64_t exponentiate_modulo(uint64_t a, uint64_t e, uint64_t m) {
-    uint64_t b1 = a / 8;
-    uint64_t b2 = a % 8;
+uint64_t multiply_modulo(uint64_t a, uint64_t b, uint64_t m) {
+    uint64_t result = 0;
+    a %= m;
 
-    for (uint64_t i = 0; i < e; i++) {
-        b1 = (b1 * b1) % m;
-        b2 = (b2 * b2) % m;
+    while (b > 0) {
+        uint64_t digit = b & 7;
+        for (uint64_t i = 0; i < digit; i++) {
+            result = (result + a) % m;
+        }
+
+        b >>= 3;
+        for (int i = 0; i < 3; i++) {
+            a = (a + a) % m;
+        }
     }
 
-    return (b1 * 8 + b2) % m;
+    return result;
+}
+
+uint64_t exponentiate_modulo(uint64_t a, uint64_t e, uint64_t m) {
+    uint64_t result = 1;
+    a %= m;
+    while (e > 0) {
+        if (e & 1)
+            result = multiply_modulo(result, a, m);
+        a = multiply_modulo(a, a, m);
+        e >>= 1;
+    }
+    return result;
 }
 
 int main() {
