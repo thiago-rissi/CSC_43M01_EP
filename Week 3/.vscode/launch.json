@@ -1,0 +1,57 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Lamps Debug (interactive stdin)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}\\lamps\\lamps.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}\\lamps",
+            "environment": [],
+            "externalConsole": false,
+            "targetArchitecture": "x64",
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:\\msys64\\ucrt64\\bin\\gdb.exe",
+            "preLaunchTask": "Build lamps",
+            "setupCommands": [
+                {
+                    "description": "Enable GDB pretty printing",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "Lamps Debug (stdin from 1.in)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}\\lamps\\lamps.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}\\lamps",
+            "environment": [],
+            "externalConsole": false,
+            "targetArchitecture": "x64",
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:\\msys64\\ucrt64\\bin\\gdb.exe",
+            "preLaunchTask": "Build lamps",
+            "setupCommands": [
+                {
+                    "description": "Enable GDB pretty printing",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "launchCompleteCommand": "None",
+            "customLaunchSetupCommands": [
+                {
+                    "description": "Start with redirected stdin",
+                    "text": "-interpreter-exec console \"run < 1.in\"",
+                    "ignoreFailures": false
+                }
+            ]
+        }
+    ]
+}
