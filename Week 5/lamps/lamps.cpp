@@ -12,7 +12,7 @@ int main() {
     cin >> target;
 
     const int INF = 1e9;
-
+    
     int next0 = 0;
     int next1 = INF;
 
